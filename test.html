@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korean Language EPS TOPIK Style Test</title>
+    <title>Presented by Bilal Ahmad </title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        .question-box {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .question-text {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #34495e;
+            margin: 0;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        .option-label:hover {
+            background-color: #f0f8ff;
+            border-color: #a3c9f0;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+            accent-color: #3498db;
+            transform: scale(1.2);
+        }
+        
+        #submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fff;
+            background-color: #3498db;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 30px;
+        }
+
+        #submit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* --- New Professional Result Card Styles --- */
+        #results {
+            margin-top: 40px;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: 500;
+            display: none; /* Initially hidden */
+            transition: all 0.5s ease-in-out;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        #results h2 {
+            font-size: 2em;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        #results p {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+
+        .result-pass {
+            background-color: #e8f5e9; /* Light green */
+            border: 2px solid #4caf50; /* Green border */
+            color: #2e7d32; /* Dark green text */
+        }
+        
+        .result-fail {
+            background-color: #ffebee; /* Light red */
+            border: 2px solid #e53935; /* Red border */
+            color: #c62828; /* Dark red text */
+        }
+        
+        .grade {
+            font-size: 2.5em;
+            font-weight: 900;
+            margin-top: 15px;
+            display: block;
+        }
+
+        .result-pass .grade {
+            color: #388e3c;
+        }
+
+        .result-fail .grade {
+            color: #d32f2f;
+        }
+        
+        /* --- End of New Styles --- */
+
+        .image-option {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            object-fit: contain; /* Prevents stretching */
+        }
+        
+        .image-option:hover {
+            border-color: #3498db;
+        }
+
+        .image-option-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            .question-box {
+                padding: 15px;
+            }
+            .image-option {
+                width: 45%; /* Adjust for smaller screens */
+            }
+        }
+    </style>
+    <style>
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Korean EPS-TOPIK Style Vocabulary Test</h1>
+    <h3>👉 Presented by Bilal Ahmad</h3
+    <form id="quizForm">
+        
+        <div class="question-box">
+            <p class="question-text">1. 다음 내용과 관계있는 그림을 고르십시오.</p>
+            <p>게임을 하고 있습니다.</p>
+            <div class="options-container image-option-container">
+                <label class="option-label"><input type="radio" name="q1" value="a"> <img src="images/1.png" alt="Playing a game" class="image-option"></label>
+                <label class="option-label"><input type="radio" name="q1" value="b"> <img src="images/2.png" alt="Eating" class="image-option"></label>
+                <label class="option-label"><input type="radio" name="q1" value="c"> <img src="images/3.png" alt="Studying" class="image-option"></label>
+                <label class="option-label"><input type="radio" name="q1" value="d"> <img src="images/4.png" alt="Shopping" class="image-option"></label>
+            </div>
+        </div>
+        <div class="question-box">
+            <p class="question-text">2. 다음 내용과 관계있는 그림을 고르십시오.</p>
+            <p>밥을 먹고 있습니다.</p>
+            <div class="options-container image-option-container">
+                <label class="option-label"><input type="radio" name="q2" value="a"> <img src="images2/4.png" alt="Driving" class="image-option"></label>
+                <label class="option-label"><input type="radio" name="q2" value="b"> <img src="images2/2.png" alt="Eating" class="image-option"></label>
+                <label class="option-label"><input type="radio" name="q2" value="c"> <img src="images2/1.png" alt="Playing" class="image-option"></label>
+                <label class="option-label"><input type="radio" name="q2" value="d"> <img src="images2/3.png" alt="Sleeping" class="image-option"></label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">3. 다음 중 밑줄 친 부분이 맞는 문장을 고르십시오.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q3" value="a"> ① 휴게실에서 &nbsp <u>쉬습니다</u>.</label>
+                <label class="option-label"><input type="radio" name="q3" value="b"> ② 기숙사에서 청소 &nbsp<u>하습니다</u>.</label>
+                <label class="option-label"><input type="radio" name="q3" value="c"> ③ 시장에서 과일을 &nbsp<u>사습니다</u>.</label>
+                <label class="option-label"><input type="radio" name="q3" value="d"> ④ 식당에서 점심을 &nbsp<u>먹습니다</u>.</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">4. 다음 중 밑줄 친 부분이 맞는 문장을 고르십시오.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q4" value="a"> ① 주말에 &nbsp <u>장에</u> &nbsp 봤습니다.</label>
+                <label class="option-label"><input type="radio" name="q4" value="b"> ② 어제 &nbsp <u>친구가</u> &nbsp 만났습니다.</label>
+                <label class="option-label"><input type="radio" name="q4" value="c"> ③ 일곱 &nbsp <u>시에</u> &nbsp 퇴근했습니다.</label>
+                <label class="option-label"><input type="radio" name="q4" value="d"> ④ 아침에 &nbsp <u>빵를</u> &nbsp 먹었습니다.</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">5. 다음 글을 읽고 내용과 같은 것을 고르십시오.</p>
+            <p>한국의 직장인들은 출근할 때 주로 대중교통이나 개인 승용차를 이용합니다. 점심시간은 보통 12시부터 1시까지로 회사 동료들과 함께 먹는 경우가 많습니다. 퇴근은 대부분 6시에 하지만 일을 다 끝내지 못했을 때는 야근을 하기도 합니다. 퇴근 후에는 팀워크를 다지기 위해 상사나 동료들과 회식을 할 때도 있습니다.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q5" value="a"> ① 직장인들은 퇴근 시간이 자유로운 경우가 많습니다.</label>
+                <label class="option-label"><input type="radio" name="q5" value="b"> ② 직장인들은 근무 시간 중에 동료들과 회식을 합니다.</label>
+                <label class="option-label"><input type="radio" name="q5" value="c"> ③ 직장인들은 출근할 때 버스나 지하철을 타지 않습니다.</label>
+                <label class="option-label"><input type="radio" name="q5" value="d"> ④ 직장인들은 대부분 회사 동료들과 함께 점심을 먹습니다.</label>
+            </div>
+        </div>
+        
+        <div class="question-box">
+            <p class="question-text">6. 다음 단어와 관계있는 것은 무엇입니까?</p>
+            <p>여름</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q6" value="a"> ① 계절</label>
+                <label class="option-label"><input type="radio" name="q6" value="b"> ② 여행</label>
+                <label class="option-label"><input type="radio" name="q6" value="c"> ③ 장소</label>
+                <label class="option-label"><input type="radio" name="q6" value="d"> ④ 명절</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">7. 다음 중 밑줄 친 부분이 맞는 문장을 고르십시오.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q7" value="a"> <span style="white-space: pre;">① 집까지 걸어서 5분쯤 <u>들어요</u>.</span></label>
+                <label class="option-label"><input type="radio" name="q7" value="b"> <span style="white-space: pre;">② 퇴근 시간에는 차가 많이 <u>걸려요</u>.</span></label>
+                <label class="option-label"><input type="radio" name="q7" value="c"> <span style="white-space: pre;">③ 생일에 친구들을 집으로 <u>건너갔어요</u>.</span></label>
+                <label class="option-label"><input type="radio" name="q7" value="d"> <spanstyle="white-space: pre;">④ 아침에 비가 왔는데 지금은 <u>그쳤어요</u>.</span></label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">8. 빈칸에 들어갈 가장 알맞은 것을 고르십시오.</p>
+            <p>김치찌개가 너무 __________. 조심해서 천천히 드세요.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q8" value="a"> ① 적습니다</label>
+                <label class="option-label"><input type="radio" name="q8" value="b"> ② 비쌉니다</label>
+                <label class="option-label"><input type="radio" name="q8" value="c"> ③ 맛있습니다</label>
+                <label class="option-label"><input type="radio" name="q8" value="d"> ④ 뜨겁습니다</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">9. 빈칸에 들어갈 알맞은 표현을 골라 문장을 완성하십시오.</p>
+            <p>제 고향은 __________. 저는 한국에 와서 처음 겨울을 경험했습니다. 너무 추워서 깜짝 놀랐습니다.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q9" value="a"> ① 바람이 많이 붑니다</label>
+                <label class="option-label"><input type="radio" name="q9" value="b"> ② 비가 자주 옵니다</label>
+                <label class="option-label"><input type="radio" name="q9" value="c"> ③ 날씨가 항상 따뜻합니다</label>
+                <label class="option-label"><input type="radio" name="q9" value="d"> ④ 날씨가 너무 춥습니다</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">10. 다음 글을 읽고 내용과 같은 것을 고르십시오.</p>
+            <p>한국은 사계절이 뚜렷한 나라입니다. 따뜻한 봄이 되면 사람들은 꽃구경을 갑니다. 여름에는 덥고 비가 많이 오며, 장마가 끝나면 무더위가 시작됩니다. 가을은 날씨가 좋아서 축제 등과 같은 행사가 많이 열립니다. 겨울은 매우 춥지만 스키 등 겨울 스포츠를 즐기는 사람들이 많습니다.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q10" value="a"> ① 한국은 계절의 변화가 뚜렷하지 않습니다.</label>
+                <label class="option-label"><input type="radio" name="q10" value="b"> ② 축제는 날씨가 좋은 가을에 많이 열립니다.</label>
+                <label class="option-label"><input type="radio" name="q10" value="c"> ③ 무더위가 끝나면 비가 많이 오는 장마가 시작됩니다.</label>
+                <label class="option-label"><input type="radio" name="q10" value="d"> ④ 겨울에는 너무 추워서 사람들이 야외 활동을 하지 않습니다.</label>
+            </div>
+        </div>
+        
+        <div class="question-box">
+            <p class="question-text">11. 그림을 보고 문장을 완성하세요. 할머니가 아침을 _________.</p>
+            <div class="options-container image-option-container">
+                <label class="option-label"><input type="radio" name="q11" value="a"> ① 드십니다</label>
+                <label class="option-label"><input type="radio" name="q11" value="b"> ② 먹습니다</label>
+                <label class="option-label"><input type="radio" name="q11" value="c"> ③ 하십니다</label>
+                <label class="option-label"><input type="radio" name="q11" value="d"> ④ 계십니다</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">12. 다음 내용과 관계있는 그림을 고르십시오.</p>
+            <p>할머니입니다.</p>
+            <div class="options-container image-option-container">
+                <label class="option-label"><input type="radio" name="q12" value="a"> <img src="images3/1.png" alt="Playing a game" class="image-option"></label>
+                <label class="option-label"><input type="radio" name="q12" value="b"> <img src="images3/2.png" alt="Driving" class="image-option"></label>
+                <label class="option-label"><input type="radio" name="q12" value="c"> <img src="images3/3.png" alt="Grandmother" class="image-option"></label>
+                <label class="option-label"><input type="radio" name="q12" value="d"> <img src="images3/4.png" alt="Sleeping" class="image-option"></label>
+            </div>
+        </div>
+        
+        <div class="question-box">
+            <p class="question-text">13. 다음 단어와 의미가 비슷한 말은 무엇입니까?</p>
+            <p>연세</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q13" value="a"> ① 이름</label>
+                <label class="option-label"><input type="radio" name="q13" value="b"> ② 나이</label>
+                <label class="option-label"><input type="radio" name="q13" value="c"> ③ 고향</label>
+                <label class="option-label"><input type="radio" name="q13" value="d"> ④ 국적</label>
+            </div>
+        </div>
+        
+        <div class="question-box">
+            <p class="question-text">14. 다음 단어의 반대말은 무엇입니까?</p>
+            <p>활발하다</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q14" value="a"> ① 친절하다</label>
+                <label class="option-label"><input type="radio" name="q14" value="b"> ② 똑똑하다</label>
+                <label class="option-label"><input type="radio" name="q14" value="c"> ③ 얌전하다</label>
+                <label class="option-label"><input type="radio" name="q14" value="d"> ④ 부지런하다</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">15. 다음 중 밑줄 친 부분이 맞는 문장을 고르십시오.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q15" value="a"> <span style="white-space: pre;">① 어머니께서 청소를 <u>하십니다</u>.</span></label>
+                <label class="option-label"><input type="radio" name="q15" value="b"> <span style="white-space: pre;">② 아버지께서 창문을 <u>닦십니다</u>.</span></label>
+                <label class="option-label"><input type="radio" name="q15" value="c"> <span style="white-space: pre;">③ 할머니께서 음식을 <u>만들십니다</u>.</span></label>
+                <label class="option-label"><input type="radio" name="q15" value="d"> <span style="white-space: pre;">④ 할아버지께서는 키가 <u>크으십니다</u>.</span></label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">16. 다음 내용과 관계있는 그림을 고르십시오.</p>
+            <p>김밥입니다.</p>
+            <div class="options-container image-option-container">
+                <label class="option-label"><input type="radio" name="q16" value="a"> <img src="images4/1.png" alt="Eating a meal" class="image-option"></label>
+                <label class="option-label"><input type="radio" name="q16" value="b"> <img src="images4/2.png" alt="Kimbap" class="image-option"></label>
+                <label class="option-label"><input type="radio" name="q16" value="c"> <img src="images4/3.png" alt="Tteokbokki" class="image-option"></label>
+                <label class="option-label"><input type="radio" name="q16" value="d"> <img src="images4/4.png" alt="Bibimbap" class="image-option"></label>
+            </div>
+        </div>
+        
+        <div class="question-box">
+            <p class="question-text">17. 다음 단어와 관계있는 것은 무엇입니까?</p>
+            <p>김치찌개</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q17" value="a"> ① 날씨</label>
+                <label class="option-label"><input type="radio" name="q17" value="b"> ② 가구</label>
+                <label class="option-label"><input type="radio" name="q17" value="c"> ③ 음식</label>
+                <label class="option-label"><input type="radio" name="q17" value="d"> ④ 도시</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">18. 다음 중 밑줄 친 부분이 맞는 문장을 고르십시오.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q18" value="a"> <span style="white-space: pre;">① 주스<u>과</u> 우유를 마셔요.</span></label>
+                <label class="option-label"><input type="radio" name="q18" value="b"> <span style="white-space: pre;">② 김밥<u>와</u> 라면을 주세요.</span></label>
+                <label class="option-label"><input type="radio" name="q18" value="c"> <span style="white-space: pre;">③ 편의점<u>과</u> 식당이 있어요.</span></label>
+                <label class="option-label"><input type="radio" name="q18" value="d"> <span style="white-spqce: pre;">④ 우동<u>와</u> 돈가스를 먹어요.</span></label>
+            </div>
+        </div>
+        
+        <div class="question-box">
+            <p class="question-text">19. 빈칸에 들어갈 가장 알맞은 것을 고르십시오.</p>
+            <p>커피숍에 갔어요. 커피를 한 _________ 마셨어요.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q19" value="a"> ① 명</label>
+                <label class="option-label"><input type="radio" name="q19" value="b"> ② 권</label>
+                <label class="option-label"><input type="radio" name="q19" value="c"> ③ 잔</label>
+                <label class="option-label"><input type="radio" name="q19" value="d"> ④ 개</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">20. 다음 글을 읽고 내용과 같은 것을 고르십시오.</p>
+            <p>최근에는 키오스크를 이용해 음식을 주문하는 가게가 많아지고 있습니다. 키오스크를 사용하면 메뉴 선택과 결제를 한 번에 할 수 있어서 매우 편리합니다. 터치스크린을 통해 원하는 메뉴와 개수를 고르고, 카드나 모바일 결제 시스템을 이용해 결제하면 됩니다. 키오스크 덕분에 사람들은 음식을 빠르고 간편하게 주문할 수 있습니다.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q20" value="a"> ① 키오스크는 현금 결제만 가능합니다.</label>
+                <label class="option-label"><input type="radio" name="q20" value="b"> ② 키오스크를 이용하면 주문이 편리합니다.</label>
+                <label class="option-label"><input type="radio" name="q20" value="c"> ③ 키오스크에서는 메뉴를 선택할 수 없습니다.</label>
+                <label class="option-label"><input type="radio" name="q20" value="d"> ④ 키오스크를 모든 가게에서 이용할 수 있습니다</label>
+            </div>
+        </div>
+        
+        <div class="question-box">
+            <p class="question-text">21. 그림을 보고 문장을 완성하세요. 오렌지가 많아요? 아니요, _________.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q21" value="a"> ① 적어요</label>
+                <label class="option-label"><input type="radio" name="q21" value="b"> ② 많아요</label>
+                <label class="option-label"><input type="radio" name="q21" value="c"> ③ 비싸요</label>
+                <label class="option-label"><input type="radio" name="q21" value="d"> ④ 싸요</label>
+            </div>
+        </div>
+        
+        <div class="question-box">
+            <p class="question-text">22. 그림을 보고 문장을 완성하세요. 상자가 가벼워요? 아니요, _________.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q22" value="a"> ① 무거워요</label>
+                <label class="option-label"><input type="radio" name="q22" value="b"> ② 가벼워요</label>
+                <label class="option-label"><input type="radio" name="q22" value="c"> ③ 작아요</label>
+                <label class="option-label"><input type="radio" name="q22" value="d"> ④ 커요</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">23. 그림을 보고 문장을 완성하세요. 수박이 작아요? 아니요, _________.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q23" value="a"> ① 길어요</label>
+                <label class="option-label"><input type="radio" name="q23" value="b"> ② 짧아요</label>
+                <label class="option-label"><input type="radio" name="q23" value="c"> ③ 커요</label>
+                <label class="option-label"><input type="radio" name="q23" value="d"> ④ 작아요</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">24. 그림을 보고 문장을 완성하세요. 케이크가 싸요? 아니요, _________.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q24" value="a"> ① 비싸요</label>
+                <label class="option-label"><input type="radio" name="q24" value="b"> ② 싸요</label>
+                <label class="option-label"><input type="radio" name="q24" value="c"> ③ 맛있어요</label>
+                <label class="option-label"><input type="radio" name="q24" value="d"> ④ 상했어요</label>
+            </div>
+        </div>
+        
+        <div class="question-box">
+            <p class="question-text">25. 다음 글을 읽고 내용과 같은 것을 고르십시오.</p>
+            <p>한국에서는 자신보다 나이가 많은 사람에게 높임말을 사용합니다. 그러나 자신보다 나이가 많아도 가족과 같이 가까운 관계일 때는 반말을 사용하기도 합니다. 그리고 자신보다 나이가 적은 사람에게는 반말을 사용합니다. 하지만 나이가 적어도 처음 만났거나 친하지 않은 사람에게는 높임말을 사용해야 합니다.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q25" value="a"> ① 한국에서는 친한 사람에게 높임말을 사용해서 말합니다.</label>
+                <label class="option-label"><input type="radio" name="q25" value="b"> ② 한국 사람은 상대의 나이에 따라 사용하는 말이 다릅니다.</label>
+                <label class="option-label"><input type="radio" name="q25" value="c"> ③ 나이가 어린 사람에게는 친하지 않아도 반말을 사용합니다.</label>
+                <label class="option-label"><input type="radio" name="q25" value="d"> ④ 가족처럼 가까운 관계여도 나이가 많으면 높임말을 사용해야 합니다.</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">26. 그림을 보고 문장을 완성하세요. 지금 뭐 해요? _________.
+            <img src="/extra images/1.png" </p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q26" value="a"> ① 이를 닦아요</label>
+                <label class="option-label"><input type="radio" name="q26" value="b"> ② 포장해요</label>
+                <label class="option-label"><input type="radio" name="q26" value="c"> ③ 교환해요</label>
+                <label class="option-label"><input type="radio" name="q26" value="d"> ④ 환불해요</label>
+            </div>
+        </div>
+        
+        <div class="question-box">
+            <p class="question-text">27. 그림을 보고 문장을 완성하세요. 지금 뭐 해요? _________.
+            <img src="extra images/27.png"</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q27" value="a"> ① 전시품을 만지다</label>
+                <label class="option-label"><input type="radio" name="q27" value="b"> ② 새치기해요</label>
+                <label class="option-label"><input type="radio" name="q27" value="c"> ③ 교환해요</label>
+                <label class="option-label"><input type="radio" name="q27" value="d"> ④ 환불해요</label>
+            </div>
+        </div>
+        
+        <div class="question-box">
+            <p class="question-text">28. 그림을 보고 문장을 완성하세요. 지금 뭐 해요? _________.
+            <img src="extra images/28.png"</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q28" value="a"> ① 계산해요</label>
+                <label class="option-label"><input type="radio" name="q28" value="b"> ② 포장해요</label>
+                <label class="option-label"><input type="radio" name="q28" value="c"> ③ 교환해요</label>
+                <label class="option-label"><input type="radio" name="q28" value="d"> ④ 침을 뱉어요</label>
+            </div>
+        </div>
+        
+        <div class="question-box">
+            <p class="question-text">29. 그림을 보고 문장을 완성하세요. 할아버지가 _________.
+            <img src="extra images/29.png"</p>
+            <div class="options-container image-option-container">
+                <label class="option-label"><input type="radio" name="q29" value="a"> ① 주무십니다 </label>
+                <label class="option-label"><input type="radio" name="q29" value="b"> ② 계십니다 </label>
+                <label class="option-label"><input type="radio" name="q29" value="c"> ③ 잡수십니다</label>
+                <label class="option-label"><input type="radio" name="q29" value="d"> ④ 말씀하십니다</label>
+            </div>
+        </div>
+        
+        <div class="question-box">
+            <p class="question-text">30. 그림을 보고 문장을 완성하세요. 할머니가 _________.
+            <img src="extra images/30.png"</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q30" value="a"> ① 주무십니다</label>
+                <label class="option-label"><input type="radio" name="q30" value="b"> ② 말씀하십니다 </label>
+                <label class="option-label"><input type="radio" name="q30" value="c"> ③ 잡수십니다</label>
+                <label class="option-label"><input type="radio" name="q30" value="d"> ④ 편찮으십니다 </label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">31. 그림을 보고 대화를 완성하세요. 자야 씨는 머리가 짧아요? 아니요, _________.
+            <img src="extra images/31.png"</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q31" value="a"> ① 머리가 길어요</label>
+                <label class="option-label"><input type="radio" name="q31" value="b"> ② 머리가 짧아요</label>
+                <label class="option-label"><input type="radio" name="q31" value="c"> ③ 예뻐요</label>
+                <label class="option-label"><input type="radio" name="q31" value="d"> ④ 멋있어요</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">32. 그림을 보고 대화를 완성하세요. 동생은 얌전해요? 아니요, _________.
+            <img src="extra images/32.png"</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q32" value="a"> ① 친절해요</label>
+                <label class="option-label"><input type="radio" name="q32" value="b"> ② 얌전해요</label>
+                <label class="option-label"><input type="radio" name="q32" value="c"> ③ 똑똑해요</label>
+                <label class="option-label"><input type="radio" name="q32" value="d"> ④ 활발해요</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">33. 그림을 보고 대화를 완성하세요. 닛차난 씨는 키가 커요? 네, _________.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q33" value="a"> ① 키가 커요</label>
+                <label class="option-label"><input type="radio" name="q33" value="b"> ② 키가 작아요</label>
+                <label class="option-label"><input type="radio" name="q33" value="c"> ③ 얌전해요</label>
+                <label class="option-label"><input type="radio" name="q33" value="d"> ④ 귀여워요</label>
+            </div>
+        </div>
+        
+        <div class="question-box">
+            <p class="question-text">34. 그림을 보고 대화를 완성하세요. 무슨 계절이에요? _________.
+            <img src="extra images/34.png"</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q34" value="a"> ① 겨울이에요</label>
+                <label class="option-label"><input type="radio" name="q34" value="b"> ② 여름이에요</label>
+                <label class="option-label"><input type="radio" name="q34" value="c"> ③ 가을이에요</label>
+                <label class="option-label"><input type="radio" name="q34" value="d"> ④ 봄이에요</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">35. 그림을 보고 대화를 완성하세요. 무슨 계절이에요? _________.
+            <img src="extra images/35.png"</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q35" value="a"> ① 겨울이에요</label>
+                <label class="option-label"><input type="radio" name="q35" value="b"> ② 여름이에요</label>
+                <label class="option-label"><input type="radio" name="q35" value="c"> ③ 가을이에요</label>
+                <label class="option-label"><input type="radio" name="q35" value="d"> ④ 봄이에요</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">36. 그림을 보고 대화를 완성하세요. 무슨 계절이에요? _________.
+            <img src="extra images/36.png"</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q36" value="a"> ① 겨울이에요</label>
+                <label class="option-label"><input type="radio" name="q36" value="b"> ② 여름이에요</label>
+                <label class="option-label"><input type="radio" name="q36" value="c"> ③ 가을이에요</label>
+                <label class="option-label"><input type="radio" name="q36" value="d"> ④ 봄이에요</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">37. 그림을 보고 대화를 완성하세요. 가을은 날씨가 어때요? _________.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q37" value="a"> ① 따뜻해요</label>
+                <label class="option-label"><input type="radio" name="q37" value="b"> ② 시원해요</label>
+                <label class="option-label"><input type="radio" name="q37" value="c"> ③ 추워요</label>
+                <label class="option-label"><input type="radio" name="q37" value="d"> ④ 더워요</label>
+            </div>
+        </div>
+        
+        <div class="question-box">
+            <p class="question-text">38. 다음 글을 읽고 내용과 같은 것을 고르십시오.</p>
+            <p>한국의 직장인들은 출근할 때 주로 대중교통이나 개인 승용차를 이용합니다. 점심시간은 보통 12시부터 1시까지로 회사 동료들과 함께 먹는 경우가 많습니다. 퇴근은 대부분 6시에 하지만 일을 다 끝내지 못했을 때는 야근을 하기도 합니다. 퇴근 후에는 팀워크를 다지기 위해 상사나 동료들과 회식을 할 때도 있습니다.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q38" value="a"> ① 직장인들은 퇴근 시간이 자유로운 경우가 많습니다.</label>
+                <label class="option-label"><input type="radio" name="q38" value="b"> ② 직장인들은 근무 시간 중에 동료들과 회식을 합니다.</label>
+                <label class="option-label"><input type="radio" name="q38" value="c"> ③ 직장인들은 출근할 때 버스나 지하철을 타지 않습니다.</label>
+                <label class="option-label"><input type="radio" name="q38" value="d"> ④ 직장인들은 대부분 회사 동료들과 함께 점심을 먹습니다.</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">39. 빈칸에 들어갈 알맞은 표현을 골라 문장을 완성하십시오.</p>
+            <p>제 고향은 _________. 저는 한국에 와서 처음 겨울을 경험했습니다. 너무 추워서 깜짝 놀랐습니다.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q39" value="a"> ① 바람이 많이 붑니다</label>
+                <label class="option-label"><input type="radio" name="q39" value="b"> ② 비가 자주 옵니다</label>
+                <label class="option-label"><input type="radio" name="q39" value="c"> ③ 날씨가 항상 따뜻합니다</label>
+                <label class="option-label"><input type="radio" name="q39" value="d"> ④ 날씨가 너무 춥습니다</label>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p class="question-text">40. 빈칸에 들어갈 가장 알맞은 것을 고르십시오.</p>
+            <p>김치찌개가 너무 _________. 조심해서 천천히 드세요.</p>
+            <div class="options-container">
+                <label class="option-label"><input type="radio" name="q40" value="a"> ① 적습니다</label>
+                <label class="option-label"><input type="radio" name="q40" value="b"> ② 비쌉니다</label>
+                <label class="option-label"><input type="radio" name="q40" value="c"> ③ 맛있습니다</label>
+                <label class="option-label"><input type="radio" name="q40" value="d"> ④ 뜨겁습니다</label>
+            </div>
+        </div>
+
+        <button type="submit"  id="submit-btn">결과 보기 (View Results)</button>
+    </form>
+
+    <div id="results" class="results-container">
+        </div>
+</div>
+
+<script>
+    const correctAnswers = {
+        q1: 'a', q2: 'b', q3: 'd', q4: 'c', q5: 'd', q6: 'a', q7: 'd', q8: 'd', q9: 'c', q10: 'b',
+        q11: 'a', q12: 'c', q13: 'b', q14: 'c', q15: 'a', q16: 'b', q17: 'c', q18: 'c', q19: 'c', q20: 'b',
+        q21: 'a', q22: 'a', q23: 'c', q24: 'a', q25: 'b', q26: 'a', q27: 'b', q28: 'd', q29: 'a', q30: 'b',
+        q31: 'a', q32: 'd', q33: 'a', q34: 'c', q35: 'b', q36: 'a', q37: 'b', q38: 'd', q39: 'c', q40: 'd'
+    };
+
+    const form = document.getElementById('quizForm');
+    const resultsDiv = document.getElementById('results');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        let score = 0;
+        const totalQuestions = Object.keys(correctAnswers).length;
+        const questionValue = 5;
+        const passingScore = 110;
+        let answeredCount = 0;
+
+        for (let i = 1; i <= totalQuestions; i++) {
+            const questionName = `q${i}`;
+            const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+            
+            if (selectedOption) {
+                answeredCount++;
+                if (selectedOption.value === correctAnswers[questionName]) {
+                    score += questionValue;
+                }
+            }
+        }
+
+        let grade = '';
+        if (score >= 180) {
+            grade = 'A+';
+        } else if (score >= 150) {
+            grade = 'A';
+        } else if (score >= 130) {
+            grade = 'B';
+        } else if (score >= 110) {
+            grade = 'C';
+        } else {
+            grade = 'Fail';
+        }
+        
+        resultsDiv.innerHTML = `
+             <h5>👉presented by Bilal Ahmad</h5>
+            <h2>Test Results</h2>
+            <p><strong>Your Score:</strong> ${score} / ${totalQuestions * questionValue}</p>
+            <p><strong>Total Correct Answers:</strong> ${score / questionValue} / ${totalQuestions}</p>
+            <p><strong>Your Grade:</strong> <span class="grade">${grade}</span></p>
+        `;
+        
+        resultsDiv.classList.remove('result-pass', 'result-fail');
+        if (score >= passingScore) {
+            resultsDiv.classList.add('result-pass');
+        } else {
+            resultsDiv.classList.add('result-fail');
+        }
+        
+        resultsDiv.style.display = 'block';
+        window.scrollTo({
+            top: resultsDiv.offsetTop,
+            behavior: 'smooth'
+        });
+    });
+</script>
+</body>
+</html>
