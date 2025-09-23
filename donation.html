@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Donation Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(120deg, #f6d365, #fda085);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .donation-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+    .number {
+      font-weight: bold;
+      font-size: 20px;
+      color: #2c3e50;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #27ae60;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #219150;
+    }
+    #transactionForm {
+      margin-top: 20px;
+      display: none;
+    }
+    input {
+      padding: 10px;
+      width: 80%;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    /* Professional Thank You Message */
+    #thankYou {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      background: #e8f9f0;
+      border: 2px solid #27ae60;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #2c3e50;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+    #thankYou span {
+      display: block;
+      font-size: 40px;
+      color: #27ae60;
+      margin-bottom: 10px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="donation-box">
+    <h1>Support Us with Your Donation</h1>
+    <p>Donate via <strong>EasyPaisa</strong>:</p>
+    <p class="number">0343 9224280</p>
+    <p>Donate via <strong>JazzCash</strong>:</p>
+    <p class="number">0309 1810307</p>
+    <h4>Bilal Ahmad </h4>
+    <button class="btn" onclick="showForm()">Donate Now</button>
+    
+    <form id="transactionForm" onsubmit="submitDonation(event)">
+      <input type="text" id="transactionId" placeholder="Enter Transaction ID" required>
+      <br>
+      <button type="submit" class="btn">Submit</button>
+    </form>
+    
+    <div id="thankYou">
+      <span>✅</span>
+      Thank you for your donation! <br>
+      Your support means a lot to us.
+    </div>
+  </div>
+
+  <script>
+    function showForm() {
+      document.getElementById('transactionForm').style.display = 'block';
+    }
+    function submitDonation(event) {
+      event.preventDefault();
+      let txnId = document.getElementById('transactionId').value;
+      if (txnId.trim() !== "") {
+        document.getElementById('transactionForm').style.display = 'none';
+        document.getElementById('thankYou').style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
