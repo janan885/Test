@@ -652,53 +652,33 @@
         const totalQuestions = Object.keys(correctAnswers).length;
         const questionValue = 5;
         const passingScore = 110;
-        let answeredCount = 0;
 
         for (let i = 1; i <= totalQuestions; i++) {
             const questionName = `q${i}`;
             const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
             
-            if (selectedOption) {
-                answeredCount++;
-                if (selectedOption.value === correctAnswers[questionName]) {
-                    score += questionValue;
-                }
+            if (selectedOption && selectedOption.value === correctAnswers[questionName]) {
+                score += questionValue;
             }
         }
 
         let grade = '';
-        if (score >= 180) {
-            grade = 'A+';
-        } else if (score >= 150) {
-            grade = 'A';
-        } else if (score >= 130) {
-            grade = 'B';
-        } else if (score >= 110) {
-            grade = 'C';
-        } else {
-            grade = 'Fail';
-        }
-        
+        if (score >= 180) grade = 'A+';
+        else if (score >= 150) grade = 'A';
+        else if (score >= 130) grade = 'B';
+        else if (score >= 110) grade = 'C';
+        else grade = 'Fail';
+
         resultsDiv.innerHTML = `
-             <h5>👉presented by Bilal Ahmad</h5>
+            <h5>👉presented by Bilal Ahmad</h5>
             <h2>Test Results</h2>
             <p><strong>Your Score:</strong> ${score} / ${totalQuestions * questionValue}</p>
             <p><strong>Total Correct Answers:</strong> ${score / questionValue} / ${totalQuestions}</p>
             <p><strong>Your Grade:</strong> <span class="grade">${grade}</span></p>
         `;
         
-        resultsDiv.classList.remove('result-pass', 'result-fail');
-        if (score >= passingScore) {
-            resultsDiv.classList.add('result-pass');
-        } else {
-            resultsDiv.classList.add('result-fail');
-        }
-        
         resultsDiv.style.display = 'block';
-        window.scrollTo({
-            top: resultsDiv.offsetTop,
-            behavior: 'smooth'
-        });
+        window.scrollTo({ top: resultsDiv.offsetTop, behavior: 'smooth' });
     });
 </script>
 </body>
