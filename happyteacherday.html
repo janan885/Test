@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استاد کو یومِ اساتذہ مبارک ہو! | Happy Teachers Day</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Poppins:wght@300;600;700&display=swap');
+
+        :root {
+            --primary-color: #1e3c72;
+            --accent-color: #ff4500;
+            --glow-color: #ffeb3b;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: radial-gradient(circle at center, #fce4ec 0%, #f8bbd0 100%);
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.5s;
+        }
+
+        .card-container {
+            perspective: 1000px;
+            width: 380px;
+            height: 520px;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1.2s cubic-bezier(0.86, 0, 0.07, 1);
+            cursor: pointer;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transform-origin: center center;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card.pop-effect {
+            transform: scale(1.05);
+            box-shadow: 0 30px 60px rgba(255, 69, 0, 0.7);
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        }
+
+        .card.flipped .back {
+            box-shadow: 0 0 40px var(--glow-color),
+                        0 0 20px var(--glow-color) inset;
+            animation: light-pulse 2s infinite alternate;
+        }
+
+        @keyframes light-pulse {
+            from { box-shadow: 0 0 30px var(--glow-color), 0 0 15px var(--glow-color) inset; }
+            to { box-shadow: 0 0 50px var(--glow-color), 0 0 25px var(--glow-color) inset; }
+        }
+
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+            box-sizing: border-box;
+            border: 5px solid #fff;
+            transition: box-shadow 1s ease-out;
+        }
+
+        .front {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2a5298 100%);
+            color: #fff;
+            z-index: 2;
+            pointer-events: auto;
+        }
+
+        .card.flipped .front {
+            pointer-events: none;
+        }
+
+        .front h1 {
+            font-family: 'Scheherazade New', serif;
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        .front p {
+            font-size: 1.4em;
+            font-weight: 300;
+            opacity: 0.95;
+            letter-spacing: 1px;
+        }
+
+        .amazing-button {
+            position: absolute;
+            bottom: 30px;
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, var(--glow-color), #FFA500);
+            color: var(--primary-color);
+            font-size: 1.1em;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5),
+                        0 0 10px rgba(255, 255, 255, 0.8) inset;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 10;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 255, 255, 0.8) inset; }
+            50% { box-shadow: 0 5px 20px rgba(255, 140, 0, 0.8), 0 0 15px rgba(255, 255, 255, 1) inset; }
+            100% { box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 255, 255, 0.8) inset; }
+        }
+
+        .back {
+            background: linear-gradient(180deg, #ffffff 0%, #f3f4f6 100%);
+            color: #333;
+            transform: rotateY(180deg);
+            justify-content: flex-start;
+            padding-top: 60px;
+        }
+
+        .back h2 {
+            color: var(--accent-color);
+            margin-bottom: 25px;
+            font-size: 2em;
+            font-weight: 700;
+            border-bottom: 3px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .message-box {
+            font-family: 'Scheherazade New', serif;
+            font-size: 1.25em;
+            line-height: 2;
+            margin-top: 15px;
+            color: #444;
+            direction: rtl;
+            text-align: justify;
+            padding: 0 10px;
+        }
+
+        .teacher-name {
+            font-weight: 900;
+            color: var(--primary-color);
+            display: inline-block;
+            margin: 0 5px;
+            padding: 3px 7px;
+            background-color: var(--glow-color);
+            border-radius: 5px;
+            box-shadow: 0 0 8px rgba(255, 165, 0, 0.7);
+            font-size: 1.1em;
+            transition: all 0.3s;
+        }
+
+        .signature {
+            font-family: 'Poppins', sans-serif;
+            margin-top: 40px;
+            font-style: italic;
+            font-weight: 600;
+            color: #555;
+            align-self: flex-end;
+            padding-right: 15px;
+            font-size: 1.05em;
+        }
+
+        .signature span {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.8em;
+            color: #1e3c72;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(1080deg); opacity: 0; }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            background-color: var(--glow-color);
+            animation: confetti-fall 8s linear infinite;
+            pointer-events: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <div class="card" id="teachersDayCard">
+            <div class="front">
+                <h1>یومِ اساتذہ مبارک</h1>
+                <p>A Special Gift From Bilal Ahmad</p>
+                <a href="javascript:void(0)" id="card-button" class="amazing-button">کارڈ دیکھنے کے لیے کلک کریں!</a>
+            </div>
+
+            <div class="back">
+                <h2>علم کی روشنی کے معماروں کے نام</h2>
+                <div class="message-box">
+                    <p style="text-align: center; font-weight: bold; color: #555;">
+                        **SALUTING THE ARCHITECTS OF KNOWLEDGE**
+                    </p>
+                    <p style="margin-top: 15px;">
+                        *انتہائی*معزز** <span class="teacher-name">Manazir Sir</span>  <span class="teacher-name">Tayyeb Sir</span>،
+                    </p>
+                 <p dir="rtl" style="text-align: justify;">
+   <strong>Dear Tayyeb Sir،</strong><br>
+   آپ نے ہمیشہ صبر اور محنت کے ساتھ ہمیں کوریائی زبان سکھائی۔
+   آپ کے پڑھانے کا انداز اور مسکراہٹ ہمیشہ ہمارے دل کو حوصلہ دیتی ہے۔
+   آپ ہمارے لیے صرف ایک استاد نہیں بلکہ وہ روشنی ہیں جو ہمیں کامیابی کی راہ دکھاتی ہے۔
+   감사합니다 (شکریہ)! 🌹
+ </p>
+                  <p dir="rtl" style="text-align: justify;">
+  <strong>Dear Manazir Sir،</strong><br>
+  آپ نے ویلڈنگ کے نظریہ اور عملی دونوں اس طرح سمجھائے کہ مشکل کام بھی آسان لگنے لگے۔
+  آپ کی محنت اور رہنمائی نے ہمیں اپنے ہنر پر یقین دلایا۔
+  آپ جیسے استاد ہمارے لیے فخر کی بات ہیں۔ 🔥🔧
+</p>
+
+<p style="margin-top: 15px; text-align:center; font-weight:bold; color:#1e3c72;">
+  Thank you both for your guidance, kindness, and dedication. 💐
+</p>
+                    <p>
+                        آپ کی بے لوث محنت کے لیے ہم ہمیشہ شکر گزار رہیں گے۔ اللہ تعالیٰ آپ کا سایہ قائم رکھے اور آپ کی خدمات کو قبول فرمائے۔ آمین۔
+                    </p>
+                </div>
+                <p class="signature">
+                    <span>Bilal Ahmad</span><br>
+                    آپ کا فرمانبردار طالب علم
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const card = document.getElementById('teachersDayCard');
+        const button = document.getElementById('card-button'); 
+
+        function handleCardClick() {
+            card.classList.toggle('flipped');
+            card.classList.add('pop-effect');
+            setTimeout(() => {
+                card.classList.remove('pop-effect');
+            }, 500); 
+        }
+
+        button.addEventListener('click', handleCardClick);
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            const colors = ['#ffeb3b', '#1e3c72', '#ff4500', '#9c27b0']; 
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            const size = Math.random() * 8 + 6; 
+            confetti.style.width = `${size}px`;
+            confetti.style.height = `${size}px`;
+            confetti.style.left = `${Math.random() * 100}vw`;
+            confetti.style.animationDuration = `${Math.random() * 4 + 7}s`; 
+            confetti.style.animationDelay = `-${Math.random() * 10}s`; 
+            document.body.appendChild(confetti);
+            setTimeout(() => {
+                confetti.remove();
+            }, 15000); 
+        }
+
+        setInterval(createConfetti, 100); 
+    </script>
+</body>
+</html>
