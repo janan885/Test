@@ -18,8 +18,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-10deg); /* center + tilt */
-  font-size: 70px;
-  color: rgba(0, 0, 0, 0.1);
+  font-size: 60px;
+  color: rgba(0, 0, 0, 0.17);
   
   pointer-events: none;
   z-index: 0;
@@ -257,8 +257,8 @@
     </div>
 
 </div>
-
-<button id="downloadBtn" onclick="downloadPDF()">📄 Download Only Card as PDF</button>
+<button id="saveImg">Save as Image</button>
+<button id="downloadBtn" onclick="downloadPDF()">📄 Download Card as PDF</button>
 
 <script>
 function generateCard() {
@@ -313,6 +313,17 @@ function downloadPDF() {
     });
 }
 </script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+    document.getElementById("saveImg").addEventListener("click", function() {
+        const card = document.querySelector(".card"); // ya #card
+        html2canvas(card).then(canvas => {
+            const link = document.createElement("a");
+            link.download = "card.png";
+            link.href = canvas.toDataURL();
+            link.click();
+        });
+    });
+</script>
 </body>
 </html>
