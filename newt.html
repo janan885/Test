@@ -9,9 +9,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
 
 
 <style>
+.bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-10deg); /* center + tilt */
+  font-size: 70px;
+  color: rgba(0, 0, 0, 0.1);
+  
+  pointer-events: none;
+  z-index: 0;
+}
     /* Global & Form Styling (Vibrant Purple/Lime) */
     body {
         font-family: 'Roboto', sans-serif;
@@ -160,9 +172,10 @@
     }
     .creator-signature .name {
         font-size: 1.1em;
-        color: #FFFFFF;
+        color: #E4CBCB;
         display: block;
         margin-bottom: -2px;
+        font-family: 'Cookie', cursive;
     }
     .creator-signature .label {
         font-size: 0.8em;
@@ -203,6 +216,7 @@
 </form>
 
 <div class="card" id="resultCard">
+    <h1 class="bg-text">from<br>MARDAN</h1>
     
     <div class="header-section">
         <h2 class="thanks">💐 Our Beloved Teachers 💐</h2>
@@ -236,8 +250,10 @@
     </div>
     
     <div class="creator-signature">
-        <span class="name">Bilal Ahmad</span>
+        <span class="name">Bilal Ahmad from mardan
+        </span>
         <span class="label">Creator</span>
+        
     </div>
 
 </div>
