@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultimate Urdu Tribute Card - Final Version</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+
+<style>
+    /* Global & Form Styling (Vibrant Purple/Lime) */
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(135deg, #f8f8fa 0%, #e0e0e0 100%);
+        text-align: center;
+        padding: 10px 0;
+    }
+    h1 {
+        color: #673AB7; 
+        margin-bottom: 15px;
+        font-family: 'Playfair Display', serif;
+    }
+    form {
+        background: #ffffff;
+        padding: 15px;
+    }
+    input {
+        margin: 6px auto;
+        padding: 7px;
+        width: 200px;
+    }
+    button {
+        background: #CDDC39; 
+        color: #333;
+        padding: 8px 16px;
+        margin-top: 8px; 
+    }
+    button:hover {
+        background: #C0CA33;
+    }
+
+    /* Card Styling (Minimized Space) */
+    .card {
+        display: none;
+        margin-top: 20px;
+        padding: 0;
+        border-radius: 10px;
+        width: 310px; 
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        overflow: hidden;
+        border: 2px solid #673AB7; 
+        position: relative;
+    }
+    
+    /* Header Section */
+    .header-section {
+        background: linear-gradient(135deg, #673AB7, #512DA8); 
+        padding: 8px 10px 5px;
+        color: white;
+        border-bottom: 3px solid #FF9800;
+    }
+    .teacher-photos {
+        gap: 10px;
+        margin-top: 5px;
+    }
+    .teacher-photo {
+        width: 45px;
+        height: 45px;
+    }
+    .thanks {
+        margin: 3px 0;
+        font-size: 1em;
+    }
+    .teacher-name-lobster {
+        margin-top: 5px !important;
+        font-size: 1.2em !important;
+        font-family: 'Lobster', cursive; 
+        color: #FFEB3B;
+    }
+    
+    /* Message Section (Urdu Text - Dark Blue) */
+    .message-section {
+        padding: 8px;
+        background: #172233;
+    }
+    .message {
+        font-size: 0.60em;
+        color: #FFFFFF; 
+        line-height: 1.5; 
+        direction: rtl; 
+        text-align: right;
+        border-right: 2px solid #CDDC39; 
+        padding-right: 5px; 
+        margin: 0;
+        font-family: 'Noto Nastaliq Urdu', 'Arial', sans-serif;
+        /* NEW: Underline the Urdu text */
+        text-decoration: ; 
+        text-decoration-color: #FF9800; /* Orange color for underline */
+        text-underline-offset: 3px;
+    }
+    
+    /* Student/User Info Section */
+    .student-info-section {
+        background: #47529F;
+        padding: 8px 15px 25px; 
+        border-top: 1px solid #E1BEE7;
+    }
+    /* NEW: Stencil Font Style for User Name */
+    #userName {
+        color: #D7DDE2;
+        margin: 3px 0 5px;
+        font-family: 'Stencil',; /* Stencil-like font */
+        font-size: 1.3em;
+        letter-spacing: 1px;
+    }
+    .card img#userPhoto {
+        width: 55px;
+        height: 55px;
+        margin-bottom: 5px;
+    }
+    .student-details p {
+        margin: 2px 0;
+        font-size: 0.75em;
+    }
+    .marks-display {
+        background: #4CAF50;
+        padding: 3px 7px;
+        font-size: 0.85em;
+    }
+    .quote {
+        margin-top: 6px;
+        padding: 4px; 
+        font-size: 0.75em;
+    }
+    
+    /* Professional Creator Signature (Logo Style) */
+    .creator-signature {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        font-size: 0.65em;
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+        padding: 4px 8px;
+        background: #333; 
+        color: #CDDC39; 
+        border-radius: 5px;
+        border: 1px solid #CDDC39;
+        z-index: 10;
+        letter-spacing: 0.5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        text-align: right;
+        line-height: 1.2;
+    }
+    .creator-signature .name {
+        font-size: 1.1em;
+        color: #FFFFFF;
+        display: block;
+        margin-bottom: -2px;
+    }
+    .creator-signature .label {
+        font-size: 0.8em;
+        color: #CDDC39;
+        display: block;
+        font-weight: normal;
+    }
+    .creator-signature::before {
+        content: "B";
+        color: #FF9800;
+        font-size: 1.1em;
+        margin-right: 4px;
+        border-right: 1px solid #CDDC39;
+        padding-right: 4px;
+        line-height: 1;
+        position: absolute;
+        left: 4px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    #downloadBtn {
+        margin-top: 15px;
+    }
+</style>
+</head>
+<body>
+
+<h1>💜 A Heartfelt Tribute to Our teachers 💚</h1>
+
+<form id="infoForm">
+    <input type="file" id="photo" accept="image/*" required>
+    <input type="text" id="name" placeholder="Enter your Name" required>
+    <input type="text" id="batch" placeholder="Enter Batch (1 or 2)" required>
+    <input type="text" id="classno" placeholder="Enter your Class Roll No" required>
+    <input type="text" id="marks" placeholder="Enter your KLT Marks" required>
+    <button type="button" onclick="generateCard()">Generate Card</button>
+</form>
+
+<div class="card" id="resultCard">
+    
+    <div class="header-section">
+        <h2 class="thanks">💐 Our Beloved Teachers 💐</h2>
+        <div class="teacher-photos">
+            <img class="teacher-photo" src="manazir.jpg" alt="Sir Manazir Photo">
+            <img class="teacher-photo" src="/tayyeb.jpg" alt="Sir Tayyeb Photo">
+        </div>
+        <h2 class="thanks teacher-name-lobster">Sir Tayyeb Sahab & Sir Manazir Sahab</h2>
+    </div>
+
+    <div class="message-section">
+        <p class="message">
+            آپ کی لگن، صبر، اور مسلسل رہنمائی نے ہماری زندگی بدل دی۔
+            آپ کی انتھک کوششوں اور حوصلہ افزائی کی بدولت ہی ہم کامیابی حاصل کر پائے۔
+            اللہ تعالیٰ آپ دونوں کو ہمیشہ خوشی اور کامیابی عطا فرمائے!
+        </p>
+    </div>
+
+    <div class="student-info-section">
+        <img id="userPhoto" src="" alt="Your Photo">
+        <h3 id="userName">Student Name</h3>
+        <div class="student-details">
+            <p><strong>Batch:</strong> <span id="userBatch"></span></p>
+            <p><strong>Class Roll No:</strong> <span id="userClass"></span></p>
+            <p>
+                <strong>KLT Marks:</strong> 
+                <span id="userMarksDisplay" class="marks-display"></span>
+            </p>
+        </div>
+        <p class="quote">"Your hard work made me pass with pride!"</p>
+    </div>
+    
+    <div class="creator-signature">
+        <span class="name">Bilal Ahmad</span>
+        <span class="label">Creator</span>
+    </div>
+
+</div>
+
+<button id="downloadBtn" onclick="downloadPDF()">📄 Download Only Card as PDF</button>
+
+<script>
+function generateCard() {
+    const photoInput = document.getElementById('photo');
+    const name = document.getElementById('name').value;
+    const batch = document.getElementById('batch').value;
+    const classno = document.getElementById('classno').value;
+    const marks = document.getElementById('marks').value;
+
+    if (!photoInput.files[0] || !name || !batch || !classno || !marks) {
+        alert('Please fill out all fields and upload your photo!');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        document.getElementById('userPhoto').src = e.target.result;
+        document.getElementById('userName').textContent = name;
+        document.getElementById('userBatch').textContent = batch;
+        document.getElementById('userClass').textContent = classno;
+        document.getElementById('userMarksDisplay').textContent = marks;
+        
+        document.getElementById('resultCard').style.display = 'block';
+        document.getElementById('downloadBtn').style.display = 'inline-block';
+    }
+    reader.readAsDataURL(photoInput.files[0]);
+}
+
+function downloadPDF() {
+    const element = document.getElementById('resultCard');
+    
+    const downloadBtn = document.getElementById('downloadBtn');
+    downloadBtn.style.display = 'none';
+
+    // PDF options for guaranteed single-page fit
+    const opt = {
+        margin:       0, 
+        filename:     'Teachers_Tribute_Card.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 4 }, 
+        jsPDF:        { unit: 'mm', format: [100, 150], orientation: 'portrait' } 
+    };
+    
+    // Execute download using promise chain for reliability
+    html2pdf().set(opt).from(element).save().then(() => {
+        downloadBtn.style.display = 'inline-block';
+        alert('✅ Card Downloaded! Please check your downloads.');
+    }).catch(error => {
+        downloadBtn.style.display = 'inline-block';
+        console.error('PDF Download Failed:', error);
+        alert('❌ Download failed. Please try again.');
+    });
+}
+</script>
+
+</body>
+</html>

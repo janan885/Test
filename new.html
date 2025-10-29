@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Motivational Animation — Growth & Hope Edition</title>
+  <style>
+    /* Global Reset & Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Poppins', sans-serif;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,#090c22 0%, #142a44 50%, #1a4e7d 100%);
+      color:#fff;overflow:hidden;padding:40px;perspective:1200px;
+    }
+
+    /* Card & Base Styles */
+    .card{
+      width:min(1000px,95%);min-height:600px;background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.03));
+      border-radius:24px;position:relative;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,0.8);
+      display:grid;grid-template-columns:1fr 440px;align-items:flex-start;padding:40px;
+      backdrop-filter:blur(10px);transition:transform 0.5s cubic-bezier(.075, .82, .165, 1);
+      animation:fadeIn 1s ease forwards;
+    }
+    .stars {
+        position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: 0;pointer-events: none;
+        background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.08) 1px, transparent 1px), 
+                    radial-gradient(circle at 80% 90%, rgba(255,255,255,0.1) 1px, transparent 1px),
+                    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 1px, transparent 1px);
+        background-size: 50px 50px, 80px 80px, 120px 120px;
+        animation: starTwinkle 20s linear infinite;
+    }
+    @keyframes starTwinkle { from { background-position: 0 0, 0 0, 0 0; } to { background-position: 50px 50px, -80px -80px, 120px 120px; } }
+    .card::before {content: '';position: absolute;top: 0;left: -100%;width: 50%;height: 100%;background: rgba(255, 255, 255, 0.1);transform: skewX(-30deg);animation: cardShine 1.8s ease-out 0.5s 1 forwards;opacity: 0;z-index: 10;}
+    @keyframes cardShine { 0% { left: -100%; opacity: 0.5; } 100% { left: 150%; opacity: 0; } }
+    @keyframes fadeIn{from{opacity:0;transform:translateY(35px) rotateX(5deg);}}
+
+    /* Text Styles */
+    .left{padding-right:30px; z-index: 20; position: relative; padding-top: 10px;}
+    h1{font-size:clamp(1.8rem,3vw,2.5rem);line-height:1.1;margin-bottom:12px;background:linear-gradient(90deg,#00d4ff,#6e00ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);transform: translateZ(20px);}
+    p.lead{opacity:0.9;margin-bottom:18px;font-size:1.05rem; transform: translateZ(10px);}
+    .typewrap{font-weight:600;font-size:1.1rem;min-height:36px;text-align:left; transform: translateZ(5px);margin-bottom: 20px;}
+    .urdu-text{font-family:'Noto Nastaliq Urdu', serif;direction:rtl;text-align:right;font-size:1.2rem;font-weight:700;line-height:1.6;}
+    .cursor{display:inline-block;width:3px;background:#fff;margin-left:6px;animation:blink 1s steps(1) infinite}
+
+    /* Focus Timer */
+    .timer-control {background: rgba(255, 255, 255, 0.08);border-radius: 12px;padding: 15px 20px;display: flex;align-items: center;justify-content: space-between;margin-top: 30px;transform: translateZ(15px);box-shadow: 0 4px 15px rgba(0,0,0,0.3);}
+    .timer-display {font-size: 2.2rem;font-weight: 700;letter-spacing: 2px;margin-right: 15px;background: linear-gradient(90deg,#ff8066,#ffd26a);-webkit-background-clip: text;-webkit-text-fill-color: transparent;}
+    .timer-btn {background: linear-gradient(90deg,#ff6b6b,#ffa07a);border: none;padding: 8px 16px;border-radius: 8px;font-weight: 600;cursor: pointer;transition: transform .1s ease;}
+    .timer-btn:hover {transform: scale(1.05);}
+    .small{font-size:0.85rem;opacity:0.85; transform: translateZ(2px);}
+
+    /* Scene & Dynamic Time/Mood Change */
+    .right{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:20px; z-index: 20; position: relative; padding-bottom: 10px;}
+    .badge{background:rgba(255,255,255,0.08);padding:8px 14px;border-radius:999px;font-weight:700;letter-spacing:0.6px;text-transform:uppercase; transform: translateZ(5px);}
+    
+    .scene{
+      width:340px;height:280px;position:relative;border-radius:16px;overflow:hidden;
+      background:linear-gradient(180deg,#07142a,#0b2a4a);
+      display:flex;align-items:flex-end;justify-content:center;padding:18px;
+      box-shadow:0 0 15px rgba(255,255,255,0.1);
+      transition: background 4s ease;
+      transform: translateZ(15px);
+    }
+    .scene.day { background: linear-gradient(180deg,#87ceeb,#4682b4); }
+    .scene.sunset { background: linear-gradient(180deg,#ff7e5f,#feb47b); }
+    .scene.night { background: linear-gradient(180deg,#07142a,#0b2a4a); }
+
+    /* RISING SUN Animation (Idea 1) */
+    .sun{
+        position:absolute;left:50%;bottom:-10px;width:120px;height:120px;border-radius:50%;
+        background:radial-gradient(circle at 50% 50%, #ffd26a, #ff8a00 60%, rgba(255,140,0,0.0) 100%);
+        filter:blur(4px);opacity: 1;
+        transform: translateX(-50%) translateY(0);
+        transition: all 4s ease;
+        z-index: 1; /* Below hills for sunrise effect */
+    }
+    .scene.day .sun {
+        transform: translateX(-50%) translateY(-100px); /* Rises to the middle */
+    }
+    .scene.sunset .sun {
+        transform: translateX(-50%) translateY(-20px); /* Slightly lower setting sun */
+        background:radial-gradient(circle at 50% 50%, #ffc0cb, #ff6f61 60%, rgba(255,140,0,0.0) 100%);
+    }
+    .scene.night .sun {
+        width: 40px; height: 40px; left: 250px; bottom: auto; top: 50px;
+        background: #fff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); opacity: 0.9;
+        transform: none; /* Moon positioning */
+    }
+    .hill{width:110%;height:70%;background:linear-gradient(180deg,#083a2f,#05402f);border-radius:50% 50% 0 0;transform:translateY(12px); z-index: 2;}
+
+    /* Growing Tree Progress (Idea 3) */
+    .tree-progress-container {
+        width: 100%;
+        height: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 15px;
+        transform: translateZ(8px);
+    }
+    .tree-svg {
+        width: 100px;
+        height: 100px;
+    }
+    .trunk {
+        fill: #5d4037;
+    }
+    .leaf {
+        fill: #4caf50;
+        transform-origin: center bottom;
+        transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    /* SVG Animation Step - JS will update this class */
+    .tree-svg.step-1 .leaf:nth-child(1) { opacity: 1; transform: scale(1); }
+    .tree-svg.step-2 .leaf:nth-child(1), .tree-svg.step-2 .leaf:nth-child(2) { opacity: 1; transform: scale(1); }
+    .tree-svg.step-3 .leaf:nth-child(1), .tree-svg.step-3 .leaf:nth-child(2), .tree-svg.step-3 .leaf:nth-child(3) { opacity: 1; transform: scale(1); }
+    .tree-svg.step-4 .leaf:nth-child(4), .tree-svg.step-4 .leaf:nth-child(5) { opacity: 1; transform: scale(1); }
+    .tree-svg.step-5 .leaf { opacity: 1; transform: scale(1); }
+    
+    .progress-info {
+        margin-top: 5px;
+        font-weight: 600;
+        color: #4caf50;
+    }
+
+
+    /* Other Elements */
+    .cta{background:linear-gradient(90deg,#00d4ff,#6e00ff);border:none;padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(3,12,40,0.6);transition:transform .15s ease,box-shadow .15s ease,color .3s; transform: translateZ(25px);}
+    .cta:hover{transform:scale(1.06) translateZ(30px);box-shadow:0 12px 24px rgba(0,0,0,0.6);color:#fff;}
+    .progress-bar{width:100%;height:10px;background:rgba(255,255,255,0.1);border-radius:10px;margin-top:20px;overflow:hidden; transform: translateZ(5px);}
+    .progress{height:100%;width:0;background:linear-gradient(90deg,#00d4ff,#6e00ff);border-radius:10px;animation:load 5s linear infinite;}
+    .quote{font-style:italic;margin-top:25px;opacity:0.8;animation:fadeText 4s infinite alternate; transform: translateZ(8px);}
+    
+    @media (max-width:860px){
+      .card{grid-template-columns:1fr;gap:24px;padding:28px; transform: none !important;}
+      .right{order:-1}
+      body { perspective: none; }
+    }
+  </style>
+</head>
+<body onmousemove="handleTilt(event)">
+  <audio id="popSound" src="https://assets.mixkit.co/sfx/preview/mixkit-game-button-click-1941.mp3" preload="auto"></audio>
+  <audio id="bellSound" src="https://assets.mixkit.co/sfx/preview/mixkit-confirmation-bell-843.mp3" preload="auto"></audio>
+
+  <div class="card" id="mainCard">
+    <div class="stars"></div>
+
+    <div class="left">
+      <div class="badge small" style="transform: translateZ(10px);">Rise • Build • Grow</div>
+      <h1>مستقل مزاجی (Consistency) ہی ترقی کی بنیاد ہے۔</h1>
+      <p class="lead">روزانہ چھوٹی سی کوشش کرتے رہیں، درخت کی طرح، آپ کی ترقی میں وقت لگے گا مگر مضبوط ہو گی۔</p>
+      
+      <div class="typewrap"><span id="typed"></span><span class="cursor"></span></div>
+      
+      <div class="tree-progress-container">
+        <svg class="tree-svg" id="treeSvg" viewBox="0 0 100 100">
+            <rect class="trunk" x="45" y="40" width="10" height="60" rx="3" />
+            <circle class="leaf" cx="50" cy="30" r="15" />
+            <circle class="leaf" cx="35" cy="45" r="10" />
+            <circle class="leaf" cx="65" cy="45" r="10" />
+            <circle class="leaf" cx="40" cy="60" r="8" />
+            <circle class="leaf" cx="60" cy="60" r="8" />
+        </svg>
+        <div class="progress-info" id="treeProgressInfo">Growth Level: 0/5</div>
+      </div>
+      
+      <div class="timer-control">
+          <span class="timer-display" id="timerDisplay">25:00</span>
+          <div>
+              <button class="timer-btn" id="timerStartBtn">Start Focus</button>
+              <button class="timer-btn" id="timerResetBtn" style="background: #ccc; color: #333;">Reset</button>
+          </div>
+      </div>
+      <div class="small" style="margin-top: 10px;">ایک فوکس سیشن مکمل کریں تو درخت ایک قدم بڑھے گا!</div>
+      
+      <div style="margin-top:30px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+        <button class="cta" id="startBtn">ترقی کا جشن منائیں ✨</button>
+        <div class="small">کلک کریں یا Spacebar دبائیں!</div>
+      </div>
+      <div class="progress-bar"><div class="progress"></div></div>
+      <div class="quote urdu-text" id="quoteText">اپنے آپ پر یقین رکھیں — آپ آدھا راستہ طے کر چکے ہیں۔</div>
+    </div>
+
+    <div class="right">
+      <div class="badge" id="timeBadge" style="transform: translateZ(10px);">Night Time</div>
+      <div class="scene" id="timeScene">
+        <div class="sun"></div>
+        <div class="hill"></div>
+      </div>
+      <div class="small">Made with ❤️ — Keep going, Bilal.</div>
+    </div>
+
+    <div class="float-shape s1"></div>
+    <div class="float-shape s2"></div>
+    <div class="confetti" id="confetti"></div>
+  </div>
+
+  <script>
+    const phrases = ["Do one thing today that your future self will thank you for.","Progress > perfection. Keep moving.","آپ کی کوشش ہی کامیابی کا پہلا قدم ہے۔","Tiny steps repeated daily become habits.","One more try. One more minute. One more page.","آپ خود سے زیادہ طاقتور ہیں۔","Stay focused. Stay humble. Keep grinding."];
+    const quotes = ["Dream big, start small, act now.","Discipline beats motivation.","آپ کا حوصلہ ہی آپ کی منزل ہے۔","Your potential is endless.","Push through the limits — future you will thank you.","ہر نیا دن ایک نیا موقع ہے چمکنے کا۔","Every morning is a new chance to shine."];
+
+    // DOM Elements
+    const typedEl=document.getElementById('typed');
+    const confettiEl=document.getElementById('confetti');
+    const popSound=document.getElementById('popSound');
+    const bellSound=document.getElementById('bellSound');
+    const startBtn=document.getElementById('startBtn');
+    const quoteTextEl = document.getElementById('quoteText');
+    const cardEl = document.getElementById('mainCard');
+    const parallaxElements = document.querySelectorAll('.scene, h1, .lead, .cta, .quote, .typewrap, .badge, .float-shape, .timer-control, .tree-progress-container');
+    const timeScene = document.getElementById('timeScene');
+    const timeBadge = document.getElementById('timeBadge');
+    
+    // --- Growth Tracker Logic (New Feature: Tree Animation) ---
+    const treeSvg = document.getElementById('treeSvg');
+    const treeProgressInfo = document.getElementById('treeProgressInfo');
+    const MAX_GROWTH_LEVEL = 5;
+    let currentGrowthLevel = 0; // Tracks progress
+
+    function updateTree(level) {
+        // Remove all step classes
+        for(let i = 1; i <= MAX_GROWTH_LEVEL; i++) {
+            treeSvg.classList.remove(`step-${i}`);
+        }
+        // Add current step class
+        if (level > 0) {
+            treeSvg.classList.add(`step-${level}`);
+        }
+        // Update text info
+        treeProgressInfo.textContent = `Growth Level: ${level}/${MAX_GROWTH_LEVEL}`;
+        if(level === MAX_GROWTH_LEVEL) {
+             treeProgressInfo.textContent = `MAXIMUM GROWTH ACHIEVED! 🌱`;
+        }
+    }
+    updateTree(currentGrowthLevel); // Initialize tree
+
+    // --- Dynamic Time/Mood Change (Rising Sun Theme) ---
+    function updateSceneMood() {
+        const hour = new Date().getHours();
+        timeScene.classList.remove('night', 'day', 'sunset');
+        let mood = '';
+        if (hour >= 6 && hour < 10) { // Early Morning (Sunrise)
+            mood = 'Sunrise';
+            timeScene.classList.add('day');
+        } else if (hour >= 10 && hour < 17) { // Day
+            mood = 'Day';
+            timeScene.classList.add('day');
+        } else if (hour >= 17 && hour < 20) { // Sunset
+            mood = 'Sunset';
+            timeScene.classList.add('sunset');
+        } else { // Night
+            mood = 'Night';
+            timeScene.classList.add('night');
+        }
+        timeBadge.textContent = mood + ' Time';
+    }
+    updateSceneMood();
+    setInterval(updateSceneMood, 600000);
+
+    // --- Focus Timer Logic (Integrated with Tree Growth) ---
+    const timerDisplay = document.getElementById('timerDisplay');
+    const timerStartBtn = document.getElementById('timerStartBtn');
+    const timerResetBtn = document.getElementById('timerResetBtn');
+    const FOCUS_TIME = 25 * 60;
+    let timeRemaining = FOCUS_TIME;
+    let timerInterval = null;
+
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+    }
+
+    function updateTimer() {
+        if (timeRemaining <= 0) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            timerDisplay.textContent = "00:00";
+            timerStartBtn.textContent = "Take a Break";
+            bellSound.currentTime = 0; bellSound.play().catch(e => {});
+            alert("Focus Session Complete! Take a 5 minute break.");
+            
+            // Success: Grow the tree
+            if(currentGrowthLevel < MAX_GROWTH_LEVEL) {
+                currentGrowthLevel++;
+                updateTree(currentGrowthLevel);
+            } else {
+                currentGrowthLevel = 0; // Reset for next cycle
+                updateTree(currentGrowthLevel);
+                alert("New Growth Cycle Started!");
+            }
+            return;
+        }
+        timeRemaining--;
+        timerDisplay.textContent = formatTime(timeRemaining);
+    }
+
+    timerStartBtn.addEventListener('click', () => {
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            timerStartBtn.textContent = "Continue Focus";
+        } else {
+            if (timeRemaining <= 0) { timeRemaining = FOCUS_TIME; }
+            timerInterval = setInterval(updateTimer, 1000);
+            timerStartBtn.textContent = "Pause Focus";
+        }
+    });
+
+    timerResetBtn.addEventListener('click', () => {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        timeRemaining = FOCUS_TIME;
+        timerDisplay.textContent = formatTime(timeRemaining);
+        timerStartBtn.textContent = "Start Focus";
+    });
+    
+    // --- Other Utility Functions (Typing, Confetti, Tilt) ---
+    let pIndex=0,charIndex=0,isDeleting=false;
+    function typeLoop(){
+      const current=phrases[pIndex];
+      const isUrdu = current.charCodeAt(0) > 1500; 
+      typedEl.classList.toggle('urdu-text', isUrdu);
+      if(!isDeleting){
+        typedEl.textContent=current.slice(0,++charIndex);
+        if(charIndex===current.length){isDeleting=true;setTimeout(typeLoop,isUrdu ? 2800 : 1600);return;}
+      }else{
+        typedEl.textContent=current.slice(0,--charIndex);
+        if(charIndex===0){isDeleting=false;pIndex=(pIndex+1)%phrases.length;}
+      }
+      const speed = isDeleting ? 40 : (isUrdu ? 120 : 70) + Math.random()*60;
+      setTimeout(typeLoop,speed);
+    }
+    setTimeout(typeLoop,700);
+
+    function hapticFeedback() { if ("vibrate" in navigator) { navigator.vibrate(100); } }
+    function burstConfetti(count=30){
+      popSound.currentTime = 0; popSound.play().catch(e => {}); 
+      for(let i=0;i<count;i++){
+        const el=document.createElement('i');const size=6+Math.random()*16;
+        el.style.width=size+'px';el.style.height=size*1.2+'px';el.style.background=`hsl(${Math.random()*360} 80% 60%)`;
+        el.style.left=(20+Math.random()*60)+'%';el.style.top='10%';confettiEl.appendChild(el);
+        const dx=(Math.random()-0.5)*120;const dy=200+Math.random()*260;const rot=(Math.random()-0.5)*720;const dur=1200+Math.random()*1400;
+        el.animate([{transform:`translate3d(0,0,0) rotate(0deg)`,opacity:1},{transform:`translate3d(${dx}px,${dy}px,0) rotate(${rot}deg)`,opacity:0}],{duration:dur,easing:'cubic-bezier(.15,.8,.25,1)'}).onfinish=()=>el.remove();
+      }
+    }
+    function handleTilt(e) {
+        if(window.innerWidth <= 860) return;
+        const rect = cardEl.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const deltaX = e.clientX - centerX;
+        const deltaY = e.clientY - centerY;
+        const rotateY = (deltaX / rect.width) * 6;
+        const rotateX = (deltaY / rect.height) * -6;
+        cardEl.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+        parallaxElements.forEach(el => {
+            const zDepthMatch = el.style.transform.match(/translateZ\((\d+)px\)/);
+            const zDepth = zDepthMatch ? parseInt(zDepthMatch[1]) : 0;
+            const sensitivity = zDepth * 0.05 + 0.5;
+            const moveX = (deltaX / rect.width) * -20 * sensitivity;
+            const moveY = (deltaY / rect.height) * -20 * sensitivity;
+            el.style.transform = `translate3d(${moveX}px, ${moveY}px, ${zDepth}px)`;
+        });
+        document.querySelector('.s1').style.transform = `translate3d(${(deltaX / rect.width) * 40}px, ${(deltaY / rect.height) * 40}px, 0)`;
+        document.querySelector('.s2').style.transform = `translate3d(${(deltaX / rect.width) * 30}px, ${(deltaY / rect.height) * 30}px, 0)`;
+    }
+    cardEl.addEventListener('mouseleave', () => {
+        cardEl.style.transform = 'rotateX(0) rotateY(0)';
+        parallaxElements.forEach(el => {
+            const zDepthMatch = el.style.transform.match(/translateZ\((\d+)px\)/);
+            const zDepth = zDepthMatch ? parseInt(zDepthMatch[1]) : 0;
+            el.style.transform = `translate3d(0, 0, ${zDepth}px)`;
+        });
+        document.querySelector('.s1').style.transform = 'translate3d(0, 0, 0)';
+        document.querySelector('.s2').style.transform = 'translate3d(0, 0, 0)';
+    });
+  </script>
+</body>
+</html>
